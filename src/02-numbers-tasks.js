@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* *******************************************************************************************
  *                                                                                           *
  * Plese read the following tutorial before implementing tasks:                              *
@@ -143,8 +144,8 @@ function getLastDigit(value) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number(value);
 }
 
 /**
@@ -160,8 +161,8 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelipidedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelipidedDiagonal(a, b, c) {
+  return Math.sqrt(a ** 2 + b ** 2 + c ** 2);
 }
 
 /**
@@ -181,8 +182,8 @@ function getParallelipidedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  return (Math.round(num / Number(`1${'0'.repeat(pow)}`)) + '0'.repeat(pow));
 }
 
 /**
@@ -202,8 +203,15 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(num) {
+  let res = true;
+  if (num <= 1 || (num > 2 && num % 2 === 0)) { res = false; }
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (!(num % i)) {
+      res = false;
+    }
+  }
+  return res;
 }
 
 /**
@@ -221,8 +229,10 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return (typeof Number(value) === 'number'
+    && !isNaN(Number(value))) ? Number(value)
+    : def;
 }
 
 module.exports = {
